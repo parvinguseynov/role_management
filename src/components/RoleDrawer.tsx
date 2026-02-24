@@ -55,7 +55,9 @@ export const RoleDrawer: React.FC<RoleDrawerProps> = ({ role, isOpen, onClose })
                 className="w-20 h-20 rounded-2xl flex items-center justify-center mb-4"
                 style={{ backgroundColor: `${role.color}15` }}
               >
-                {IconComponent && <IconComponent className="w-10 h-10" style={{ color: role.color }} />}
+                <div style={{ color: role.color }}>
+                  {IconComponent && <IconComponent className="w-10 h-10" />}
+                </div>
               </div>
               <h3 className="text-xl font-semibold text-slate-900 mb-2">{role.name}</h3>
               <Badge variant="success">Active</Badge>

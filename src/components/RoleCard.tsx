@@ -23,7 +23,9 @@ export const RoleCard: React.FC<RoleCardProps> = ({ role, onClick }) => {
           className="w-12 h-12 rounded-lg flex items-center justify-center"
           style={{ backgroundColor: `${role.color}15` }}
         >
-          {IconComponent && <IconComponent className="w-6 h-6" style={{ color: role.color }} />}
+          <div style={{ color: role.color }}>
+            {IconComponent && <IconComponent className="w-6 h-6" />}
+          </div>
         </div>
         <Badge variant="success">Active</Badge>
       </div>
