@@ -110,7 +110,7 @@ export const OrgChart: React.FC<OrgChartProps> = ({
 
             {/* Departments Grid */}
             <div className="flex flex-wrap gap-12 justify-center max-w-7xl">
-              {filteredDepartments.map((dept, index) => (
+              {filteredDepartments.map((dept) => (
                 <div key={dept.id} className="flex flex-col items-center">
                   <DepartmentNode
                     department={dept}

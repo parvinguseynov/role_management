@@ -44,7 +44,7 @@ export const DepartmentNode: React.FC<DepartmentNodeProps> = ({
           </div>
 
           <div className="text-center py-3 border-y border-slate-200 my-3">
-            {hasHod ? (
+            {hasHod && department.hod ? (
               <>
                 <div className="flex items-center justify-center gap-2 mb-1">
                   <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
