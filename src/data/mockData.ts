@@ -1,4 +1,5 @@
 import { Role } from '../types';
+import { ScopedRoles } from '../types/scopedRoles';
 
 export const roles: Role[] = [
   {
@@ -158,3 +159,41 @@ export const roles: Role[] = [
     }
   },
 ];
+
+export const scopedRoles: ScopedRoles = {
+  hod: {
+    name: 'Head of Department',
+    icon: 'Building2',
+    color: '#8B5CF6',
+    description: 'Head of Department manages an entire department, approves timesheets and PTO for all department members, and oversees team managers.',
+    assignments: [
+      { id: '1', name: 'John Smith', email: 'john@staffco.com', title: 'Engineering Manager', avatar: 'JS', department: 'Engineering' },
+      { id: '2', name: 'Diana Ross', email: 'diana@staffco.com', title: 'HR Director', avatar: 'DR', department: 'HR' },
+      { id: '3', name: 'Tom Wilson', email: 'tom@staffco.com', title: 'Finance Director', avatar: 'TW', department: 'Finance' },
+      { id: '4', name: 'Eva Martinez', email: 'eva@staffco.com', title: 'Product Director', avatar: 'EM', department: 'Product' },
+    ],
+    vacantDepartments: [
+      { id: '5', name: 'Marketing' },
+    ]
+  },
+  teamManager: {
+    name: 'Team Manager',
+    icon: 'Users',
+    color: '#3B82F6',
+    description: 'Team Manager leads a team within a department, approves timesheets and PTO for team members, and reports to the Head of Department.',
+    assignments: [
+      { id: '1', name: 'Alice Wong', email: 'alice@staffco.com', title: 'Senior Developer', avatar: 'AW', team: 'Frontend', department: 'Engineering' },
+      { id: '2', name: 'Bob Lee', email: 'bob@staffco.com', title: 'Senior Developer', avatar: 'BL', team: 'Frontend', department: 'Engineering' },
+      { id: '3', name: 'Carol Jin', email: 'carol@staffco.com', title: 'Tech Lead', avatar: 'CJ', team: 'Backend', department: 'Engineering' },
+      { id: '4', name: 'Sarah Park', email: 'sarah@staffco.com', title: 'Recruiter Lead', avatar: 'SP', team: 'Recruiting', department: 'HR' },
+      { id: '5', name: 'Mark Taylor', email: 'mark@staffco.com', title: 'Content Lead', avatar: 'MT', team: 'Content', department: 'Marketing' },
+      { id: '6', name: 'Lisa Wang', email: 'lisa@staffco.com', title: 'People Ops Lead', avatar: 'LW', team: 'People Ops', department: 'HR' },
+      { id: '7', name: 'James Lee', email: 'james@staffco.com', title: 'Accounting Lead', avatar: 'JL', team: 'Accounting', department: 'Finance' },
+      { id: '8', name: 'Anna White', email: 'anna@staffco.com', title: 'Product Lead', avatar: 'AW', team: 'Core Product', department: 'Product' },
+    ],
+    vacantTeams: [
+      { id: '1', name: 'QA', department: 'Engineering' },
+      { id: '2', name: 'Design', department: 'Marketing' },
+    ]
+  }
+};
