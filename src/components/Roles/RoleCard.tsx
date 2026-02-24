@@ -28,7 +28,7 @@ export const RoleCard: React.FC<RoleCardProps> = ({ role, onClick }) => {
         {role.memberCount === 0 ? 'No member' : `${role.memberCount} member${role.memberCount !== 1 ? 's' : ''}`}
       </p>
 
-      <Button variant="secondary" className="w-full" onClick={(e) => { e.stopPropagation(); onClick(); }}>
+      <Button variant="secondary" className="w-full" onClick={(e) => { e?.stopPropagation(); onClick(); }}>
         View members
       </Button>
     </div>

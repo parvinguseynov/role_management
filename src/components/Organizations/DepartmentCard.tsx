@@ -100,7 +100,7 @@ export const DepartmentCard: React.FC<DepartmentCardProps> = ({
           <Button
             variant="ghost"
             onClick={(e) => {
-              e.stopPropagation();
+              e?.stopPropagation();
               onAddTeam();
             }}
             className="flex items-center gap-2"
