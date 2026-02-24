@@ -1,153 +1,160 @@
-import { Role, Department, ArchivedItem } from '../types';
+import { Role } from '../types';
 
 export const roles: Role[] = [
   {
     id: '1',
     name: 'Owner',
     icon: 'Crown',
-    iconBgColor: 'bg-purple-100',
-    iconColor: 'text-purple-600',
+    color: '#8B5CF6',
     memberCount: 2,
+    description: 'Ultimate authority over the workspace. Full access to all features including billing, subscription management, and account deletion.',
     members: [
-      { id: '1', name: 'Hugh Inman', email: 'hugh@staffco.com', avatar: 'HI' },
-      { id: '2', name: 'Sarah Chen', email: 'sarah@staffco.com', avatar: 'SC' },
+      { id: '1', name: 'Hugh Inman', email: 'hugh@staffco.com', title: 'CEO', location: 'New York, USA', avatar: 'HI' },
+      { id: '2', name: 'Sarah Chen', email: 'sarah@staffco.com', title: 'Co-founder', location: 'San Francisco, USA', avatar: 'SC' },
     ],
-    description: 'Ultimate authority over the workspace. Full access to all features including billing and account deletion.',
     permissions: {
-      'User Management': ['View all users', 'Invite users', 'Edit user profiles', 'Deactivate users', 'Delete users'],
-      'Time & PTO': ['View all timesheets', 'Edit any timesheet', 'Approve timesheets', 'View all PTO', 'Approve PTO', 'Edit PTO balances', 'Create PTO policies'],
-      'Finance': ['View salary data', 'Edit pay rates', 'Process payroll'],
-      'Settings': ['View company settings', 'Edit company settings', 'Manage billing', 'Delete account'],
+      userManagement: {
+        allowed: ['View all users', 'Invite users', 'Edit user profiles', 'Deactivate users', 'Delete users'],
+        denied: []
+      },
+      timePto: {
+        allowed: ['View all timesheets', 'Edit any timesheet', 'Approve timesheets', 'View all PTO', 'Approve PTO', 'Edit PTO balances', 'Create PTO policies'],
+        denied: []
+      },
+      finance: {
+        allowed: ['View salary data', 'Edit pay rates', 'Process payroll'],
+        denied: []
+      },
+      settings: {
+        allowed: ['View company settings', 'Edit company settings', 'Manage billing', 'Manage integrations', 'Delete account'],
+        denied: []
+      }
     }
   },
   {
     id: '2',
     name: 'Admin',
     icon: 'Settings',
-    iconBgColor: 'bg-blue-100',
-    iconColor: 'text-blue-600',
+    color: '#3B82F6',
     memberCount: 1,
-    members: [
-      { id: '3', name: 'John Hamilton', email: 'john@staffco.com', avatar: 'JH' },
-    ],
     description: 'Full administrative access to manage users, settings, and operations. Cannot manage billing or delete account.',
+    members: [
+      { id: '3', name: 'John Hamilton', email: 'john@staffco.com', title: 'Operations Manager', location: 'New York, USA', avatar: 'JH' },
+    ],
     permissions: {
-      'User Management': ['View all users', 'Invite users', 'Edit user profiles', 'Deactivate users'],
-      'User Management Denied': ['Delete users'],
-      'Time & PTO': ['View all timesheets', 'Edit any timesheet', 'Approve timesheets', 'View all PTO', 'Approve PTO', 'Edit PTO balances', 'Create PTO policies'],
-      'Finance': ['View salary data', 'Edit pay rates', 'Process payroll'],
-      'Settings': ['View company settings', 'Edit company settings', 'Manage integrations'],
-      'Settings Denied': ['Manage billing', 'Delete account'],
+      userManagement: {
+        allowed: ['View all users', 'Invite users', 'Edit user profiles', 'Deactivate users'],
+        denied: ['Delete users']
+      },
+      timePto: {
+        allowed: ['View all timesheets', 'Edit any timesheet', 'Approve timesheets', 'View all PTO', 'Approve PTO', 'Edit PTO balances', 'Create PTO policies'],
+        denied: []
+      },
+      finance: {
+        allowed: ['View salary data', 'Edit pay rates', 'Process payroll'],
+        denied: []
+      },
+      settings: {
+        allowed: ['View company settings', 'Edit company settings', 'Manage integrations'],
+        denied: ['Manage billing', 'Delete account']
+      }
     }
   },
   {
     id: '3',
     name: 'HR Admin',
     icon: 'UserCog',
-    iconBgColor: 'bg-pink-100',
-    iconColor: 'text-pink-600',
+    color: '#EC4899',
     memberCount: 10,
-    members: [
-      { id: '4', name: 'Diana Ross', email: 'diana@staffco.com', avatar: 'DR', scopedRoles: ['HOD: HR Department'] },
-      { id: '5', name: 'Mike Chen', email: 'mike@staffco.com', avatar: 'MC' },
-      { id: '6', name: 'Sarah Park', email: 'sarah.p@staffco.com', avatar: 'SP', scopedRoles: ['Team Manager: Recruiting'] },
-      { id: '7', name: 'Alex Kim', email: 'alex@staffco.com', avatar: 'AK' },
-      { id: '8', name: 'Lisa Wang', email: 'lisa@staffco.com', avatar: 'LW' },
-    ],
     description: 'Human Resources administrator with access to employee data, PTO management, and user administration. No access to financial data.',
+    members: [
+      { id: '4', name: 'Diana Ross', email: 'diana@staffco.com', title: 'HR Manager', location: 'New York, USA', avatar: 'DR', scopedRoles: ['HOD: HR Department'] },
+      { id: '5', name: 'Mike Chen', email: 'mike@staffco.com', title: 'HR Specialist', location: 'New York, USA', avatar: 'MC' },
+      { id: '6', name: 'Sarah Park', email: 'sarah.p@staffco.com', title: 'Recruiter', location: 'Los Angeles, USA', avatar: 'SP', scopedRoles: ['Team Manager: Recruiting'] },
+      { id: '7', name: 'Alex Kim', email: 'alex@staffco.com', title: 'HR Coordinator', location: 'Chicago, USA', avatar: 'AK' },
+      { id: '8', name: 'Lisa Wang', email: 'lisa@staffco.com', title: 'People Ops', location: 'Seattle, USA', avatar: 'LW' },
+    ],
     permissions: {
-      'User Management': ['View all users', 'Invite users', 'Edit user profiles', 'Deactivate users'],
-      'User Management Denied': ['Delete users'],
-      'Time & PTO': ['View all timesheets', 'Approve timesheets', 'View all PTO', 'Approve PTO', 'Edit PTO balances', 'Create PTO policies'],
-      'Finance': [],
-      'Finance Denied': ['View salary data', 'Edit pay rates', 'Process payroll'],
-      'Settings': ['View company settings'],
-      'Settings Denied': ['Edit company settings', 'Manage billing'],
+      userManagement: {
+        allowed: ['View all users', 'Invite users', 'Edit user profiles', 'Deactivate users'],
+        denied: ['Delete users']
+      },
+      timePto: {
+        allowed: ['View all timesheets', 'Approve timesheets', 'View all PTO', 'Approve PTO', 'Edit PTO balances', 'Create PTO policies'],
+        denied: []
+      },
+      finance: {
+        allowed: [],
+        denied: ['View salary data', 'Edit pay rates', 'Process payroll']
+      },
+      settings: {
+        allowed: ['View company settings'],
+        denied: ['Edit company settings', 'Manage billing', 'Manage integrations']
+      }
     }
   },
   {
     id: '4',
     name: 'Finance',
     icon: 'Banknote',
-    iconBgColor: 'bg-amber-100',
-    iconColor: 'text-amber-600',
+    color: '#F59E0B',
     memberCount: 3,
+    description: 'Finance administrator with access to payroll, salary data, and financial settings. Limited access to HR data.',
     members: [
-      { id: '9', name: 'Tom Wilson', email: 'tom@staffco.com', avatar: 'TW' },
-      { id: '10', name: 'Emma Brown', email: 'emma@staffco.com', avatar: 'EB' },
-      { id: '11', name: 'James Lee', email: 'james@staffco.com', avatar: 'JL' },
+      { id: '9', name: 'Tom Wilson', email: 'tom@staffco.com', title: 'Finance Manager', location: 'New York, USA', avatar: 'TW' },
+      { id: '10', name: 'Emma Brown', email: 'emma@staffco.com', title: 'Accountant', location: 'Boston, USA', avatar: 'EB' },
+      { id: '11', name: 'James Lee', email: 'james@staffco.com', title: 'Payroll Specialist', location: 'New York, USA', avatar: 'JL' },
     ],
-    description: 'Finance administrator with access to payroll, salary data, and financial settings. No access to HR data.',
     permissions: {
-      'User Management': [],
-      'User Management Denied': ['View all users', 'Invite users', 'Edit user profiles', 'Deactivate users', 'Delete users'],
-      'Time & PTO': ['View all timesheets'],
-      'Time & PTO Denied': ['Approve timesheets', 'View all PTO', 'Approve PTO', 'Edit PTO balances'],
-      'Finance': ['View salary data', 'Edit pay rates', 'Process payroll'],
-      'Settings': ['View company settings'],
-      'Settings Denied': ['Edit company settings', 'Manage billing'],
+      userManagement: {
+        allowed: ['View all users'],
+        denied: ['Invite users', 'Edit user profiles', 'Deactivate users', 'Delete users']
+      },
+      timePto: {
+        allowed: ['View all timesheets'],
+        denied: ['Edit any timesheet', 'Approve timesheets', 'View all PTO', 'Approve PTO']
+      },
+      finance: {
+        allowed: ['View salary data', 'Edit pay rates', 'Process payroll'],
+        denied: []
+      },
+      settings: {
+        allowed: ['View company settings'],
+        denied: ['Edit company settings', 'Manage billing', 'Manage integrations']
+      }
     }
   },
   {
     id: '5',
     name: 'Member',
     icon: 'Users',
-    iconBgColor: 'bg-gray-100',
-    iconColor: 'text-gray-600',
+    color: '#64748B',
     memberCount: 45,
-    members: [],
     description: 'Standard team member with access to their own data only. Can track time, request PTO, and view their own reports.',
+    members: [
+      { id: '12', name: 'Alice Wong', email: 'alice@staffco.com', title: 'Senior Developer', location: 'San Francisco, USA', avatar: 'AW', scopedRoles: ['Team Manager: Frontend'] },
+      { id: '13', name: 'Bob Lee', email: 'bob@staffco.com', title: 'Developer', location: 'Austin, USA', avatar: 'BL' },
+      { id: '14', name: 'Carol Jin', email: 'carol@staffco.com', title: 'Designer', location: 'Seattle, USA', avatar: 'CJ' },
+      { id: '15', name: 'David Park', email: 'david@staffco.com', title: 'QA Engineer', location: 'Denver, USA', avatar: 'DP' },
+      { id: '16', name: 'Eva Martinez', email: 'eva@staffco.com', title: 'Product Manager', location: 'Miami, USA', avatar: 'EM', scopedRoles: ['HOD: Product'] },
+    ],
     permissions: {
-      'User Management': ['View own profile', 'Edit own profile'],
-      'Time & PTO': ['Track own time', 'View own timesheets', 'Request PTO', 'View own PTO balance'],
-      'Finance': ['View own salary'],
-      'Settings': [],
+      userManagement: {
+        allowed: ['View own profile', 'Edit own profile'],
+        denied: []
+      },
+      timePto: {
+        allowed: ['Track own time', 'View own timesheets', 'Request PTO', 'View own PTO balance'],
+        denied: []
+      },
+      finance: {
+        allowed: ['View own salary'],
+        denied: []
+      },
+      settings: {
+        allowed: [],
+        denied: []
+      }
     }
-  },
-];
-
-export const departments: Department[] = [
-  {
-    id: '1',
-    name: 'Engineering',
-    hod: { id: '12', name: 'John Smith', avatar: 'JS' },
-    memberCount: 32,
-    teams: [
-      { id: '1', name: 'Frontend', managers: [{ name: 'Alice Wong' }, { name: 'Bob Lee' }], memberCount: 12 },
-      { id: '2', name: 'Backend', managers: [{ name: 'Carol Jin' }], memberCount: 8 },
-      { id: '3', name: 'QA', managers: [], memberCount: 6 },
-    ],
-    membersWithoutTeam: 6,
-  },
-  {
-    id: '2',
-    name: 'Marketing',
-    hod: { id: '13', name: 'Jane Doe', avatar: 'JD' },
-    memberCount: 15,
-    teams: [
-      { id: '4', name: 'Content', managers: [{ name: 'Mark Taylor' }], memberCount: 8 },
-      { id: '5', name: 'Design', managers: [{ name: 'Anna White' }], memberCount: 7 },
-    ],
-    membersWithoutTeam: 0,
-  },
-  {
-    id: '3',
-    name: 'HR',
-    hod: { id: '4', name: 'Diana Ross', avatar: 'DR' },
-    memberCount: 5,
-    teams: [
-      { id: '6', name: 'Recruiting', managers: [{ name: 'Sarah Park' }], memberCount: 3 },
-    ],
-    membersWithoutTeam: 2,
-  },
-];
-
-export const archivedItems: ArchivedItem[] = [
-  {
-    id: '1',
-    type: 'department',
-    name: 'Operations',
-    archivedAt: 'Jan 15, 2026',
-    details: '8 members, 2 teams',
   },
 ];
