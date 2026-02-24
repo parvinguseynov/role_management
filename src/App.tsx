@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { RolesPage } from './components/RolesPage';
-import { OrgChartPage } from './components/orgchart/OrgChartPage';
+import { OrgChartPageV2 } from './components/orgchart/OrgChartPageV2';
 import { roles } from './data/mockData';
-import { company, departments } from './data/orgChartData';
+import { company, departments } from './data/orgChartDataExpanded';
 
 type Page = 'roles' | 'orgchart';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<Page>('orgchart');
+  const [currentPage, setCurrentPage] = useState<Page>('roles');
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -43,7 +43,7 @@ function App() {
       {/* Page Content */}
       {currentPage === 'roles' && <RolesPage roles={roles} />}
       {currentPage === 'orgchart' && (
-        <OrgChartPage company={company} departments={departments} />
+        <OrgChartPageV2 company={company} departments={departments} />
       )}
     </div>
   );
