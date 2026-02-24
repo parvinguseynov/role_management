@@ -15,15 +15,13 @@ export const OrganizationsList: React.FC<OrganizationsListProps> = ({ department
   const [searchTerm, setSearchTerm] = useState('');
   const [isDepartmentModalOpen, setIsDepartmentModalOpen] = useState(false);
   const [isTeamModalOpen, setIsTeamModalOpen] = useState(false);
-  const [selectedDepartment, setSelectedDepartment] = useState<string | null>(null);
 
   const filteredDepartments = departments.filter((dept) =>
     dept.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     dept.teams.some((team) => team.name.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
-  const handleAddTeam = (departmentId: string) => {
-    setSelectedDepartment(departmentId);
+  const handleAddTeam = () => {
     setIsTeamModalOpen(true);
   };
 
@@ -52,7 +50,7 @@ export const OrganizationsList: React.FC<OrganizationsListProps> = ({ department
             key={department.id}
             department={department}
             onEditDepartment={() => console.log('Edit department', department.id)}
-            onAddTeam={() => handleAddTeam(department.id)}
+            onAddTeam={handleAddTeam}
             onArchiveDepartment={() => console.log('Archive department', department.id)}
             onEditTeam={(teamId) => console.log('Edit team', teamId)}
             onArchiveTeam={(teamId) => console.log('Archive team', teamId)}
@@ -68,10 +66,7 @@ export const OrganizationsList: React.FC<OrganizationsListProps> = ({ department
 
       <TeamModal
         isOpen={isTeamModalOpen}
-        onClose={() => {
-          setIsTeamModalOpen(false);
-          setSelectedDepartment(null);
-        }}
+        onClose={() => setIsTeamModalOpen(false)}
         onSave={(data) => console.log('Create team', data)}
         departments={departments.map(d => ({ id: d.id, name: d.name }))}
       />

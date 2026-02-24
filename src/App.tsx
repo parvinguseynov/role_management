@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { TabType } from './types';
 import { roles, departments, archivedItems } from './data/mockData';
 import { PageHeader } from './components/Layout/PageHeader';
