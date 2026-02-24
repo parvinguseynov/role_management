@@ -2,7 +2,6 @@ import React from 'react';
 import * as Icons from 'lucide-react';
 import { ScopedRole } from '../types/scopedRoles';
 import { AvatarGroup } from './AvatarGroup';
-import { ChevronRight } from 'lucide-react';
 
 interface ScopedRoleCardProps {
   role: ScopedRole;
@@ -26,35 +25,37 @@ export const ScopedRoleCard: React.FC<ScopedRoleCardProps> = ({ role, onClick })
   return (
     <div
       onClick={onClick}
-      className="bg-white rounded-lg border border-slate-200 p-6 hover:shadow-md transition-all cursor-pointer group"
+      className="bg-white rounded-lg border border-slate-200 p-6 hover:shadow-md hover:-translate-y-px transition-all cursor-pointer flex flex-col items-center text-center"
     >
-      <div className="flex items-center justify-center mb-4">
-        <div
-          className="w-16 h-16 rounded-lg flex items-center justify-center"
-          style={{ backgroundColor: `${role.color}15` }}
-        >
-          <div style={{ color: role.color }}>
-            {IconComponent && <IconComponent className="w-8 h-8" />}
-          </div>
+      {/* Icon Container */}
+      <div
+        className="w-16 h-16 rounded-xl flex items-center justify-center mb-4 p-5"
+        style={{ backgroundColor: `${role.color}10` }}
+      >
+        <div style={{ color: role.color }}>
+          {IconComponent && <IconComponent className="w-6 h-6" />}
         </div>
       </div>
 
-      <h3 className="text-base font-semibold text-slate-900 mb-4 text-center">
+      {/* Role Name */}
+      <h3 className="text-lg font-semibold text-slate-900 mb-4">
         {role.name}
       </h3>
 
-      <div className="flex justify-center mb-4">
+      {/* Avatar Group */}
+      <div className="mb-3">
         <AvatarGroup members={members} max={5} total={role.assignments.length} />
       </div>
 
-      <p className="text-sm text-slate-600 mb-4 text-center">
+      {/* Assignment Count */}
+      <p className="text-sm text-slate-500 mb-4">
         {role.assignments.length} assigned
       </p>
 
-      <button className="w-full text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center justify-center gap-1 group-hover:gap-2 transition-all">
-        View assignments
-        <ChevronRight className="w-4 h-4" />
-      </button>
+      {/* View Assignments Link */}
+      <a className="text-sm text-blue-600 hover:text-blue-700 hover:underline font-medium">
+        View assignments →
+      </a>
     </div>
   );
 };

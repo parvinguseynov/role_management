@@ -4,6 +4,7 @@ import { Role, ViewMode } from '../types';
 import { ScopedRole } from '../types/scopedRoles';
 import { SearchInput } from './SearchInput';
 import { RoleCard } from './RoleCard';
+import { RoleRowCompact } from './RoleRowCompact';
 import { RoleDrawer } from './RoleDrawer';
 import { ScopedRoleCard } from './ScopedRoleCard';
 import { ScopedRoleDrawer } from './ScopedRoleDrawer';
@@ -30,7 +31,7 @@ export const RolesPage: React.FC<RolesPageProps> = ({ roles }) => {
         <div className="mb-8">
           <h1 className="text-2xl font-semibold text-slate-900 mb-2">Roles</h1>
           <p className="text-sm text-slate-600">
-            View and manage roles across your company.
+            View role permissions and member assignments across your company.
           </p>
         </div>
 
@@ -76,23 +77,49 @@ export const RolesPage: React.FC<RolesPageProps> = ({ roles }) => {
             Assigned to users across the entire company.
           </p>
 
-          <div className={`mb-6 ${
-            viewMode === 'grid'
-              ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
-              : 'space-y-4'
-          }`}>
-            {filteredRoles.map((role) => (
-              <RoleCard
-                key={role.id}
-                role={role}
-                onClick={() => setSelectedRole(role)}
-              />
-            ))}
-          </div>
-
-          {filteredRoles.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-slate-500">No roles found matching your search.</p>
+          {filteredRoles.length > 0 ? (
+            <div className={`mb-6 ${
+              viewMode === 'grid'
+                ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
+                : 'space-y-3'
+            }`}>
+              {filteredRoles.map((role) => (
+                viewMode === 'grid' ? (
+                  <RoleCard
+                    key={role.id}
+                    role={role}
+                    onClick={() => setSelectedRole(role)}
+                  />
+                ) : (
+                  <RoleRowCompact
+                    key={role.id}
+                    role={role}
+                    onClick={() => setSelectedRole(role)}
+                  />
+                )
+              ))}
+            </div>
+          ) : (
+            <div className="bg-white border border-slate-200 rounded-lg p-12 text-center">
+              <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Grid3x3 className="w-6 h-6 text-slate-400" />
+              </div>
+              <h3 className="text-base font-semibold text-slate-900 mb-2">
+                No roles found
+              </h3>
+              <p className="text-sm text-slate-600 mb-4">
+                {searchTerm
+                  ? `No roles match "${searchTerm}". Try adjusting your search.`
+                  : 'There are no roles configured in your company yet.'}
+              </p>
+              {searchTerm && (
+                <button
+                  onClick={() => setSearchTerm('')}
+                  className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                >
+                  Clear search
+                </button>
+              )}
             </div>
           )}
         </div>

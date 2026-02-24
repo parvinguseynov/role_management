@@ -117,7 +117,7 @@ export const RoleDrawer: React.FC<RoleDrawerProps> = ({ role, isOpen, onClose })
               <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg flex gap-2">
                 <span className="text-blue-600 text-sm flex-shrink-0">ℹ️</span>
                 <p className="text-xs text-blue-900">
-                  To change a user's role, go to their profile
+                  To change a user's role, go to Users page or their profile
                 </p>
               </div>
             </div>

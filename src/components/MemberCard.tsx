@@ -1,7 +1,7 @@
 import React from 'react';
 import { Member } from '../types';
 import { Avatar } from './Avatar';
-import { MapPin, MoreVertical, ChevronRight } from 'lucide-react';
+import { MapPin, ChevronRight } from 'lucide-react';
 import { Badge } from './Badge';
 
 interface MemberCardProps {
@@ -14,12 +14,7 @@ export const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
       <div className="flex items-start gap-3">
         <Avatar initials={member.avatar} size="md" />
         <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between mb-1">
-            <h4 className="font-semibold text-slate-900">{member.name}</h4>
-            <button className="p-1 hover:bg-slate-200 rounded transition-colors">
-              <MoreVertical className="w-4 h-4 text-slate-400" />
-            </button>
-          </div>
+          <h4 className="font-semibold text-slate-900 mb-1">{member.name}</h4>
           <p className="text-sm text-slate-600 mb-1">{member.title}</p>
           <p className="text-sm text-slate-500 mb-2">{member.email}</p>
           <div className="flex items-center justify-between">
