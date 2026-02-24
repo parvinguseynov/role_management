@@ -80,42 +80,44 @@ export const OrgChartV2: React.FC<OrgChartV2Props> = ({
   });
 
   return (
-    <div className="flex-1 overflow-auto bg-slate-50 p-8">
-      <div
-        style={{
-          transform: `scale(${zoom})`,
-          transformOrigin: 'top center',
-          transition: 'transform 0.2s ease-out',
-        }}
-        className="inline-block min-w-full"
-      >
-        <div className="flex flex-col items-center gap-10">
-          {/* Company Node */}
-          <CompanyNode company={company} />
+    <div className="flex-1 overflow-auto bg-slate-50" style={{ height: 'calc(100vh - 200px)' }}>
+      <div className="p-8 pb-32">
+        <div
+          style={{
+            transform: `scale(${zoom})`,
+            transformOrigin: 'top center',
+            transition: 'transform 0.2s ease-out',
+          }}
+          className="inline-block min-w-full"
+        >
+          <div className="flex flex-col items-center gap-20">
+            {/* Company Node */}
+            <CompanyNode company={company} />
 
-          {/* Vertical Connector */}
-          <div className="w-0.5 h-10 bg-slate-300" />
+            {/* Vertical Connector - Company to Departments */}
+            <div className="w-1 h-20 bg-slate-300" style={{ width: '3px' }} />
 
-          {/* Departments */}
-          <div className="flex flex-wrap gap-12 justify-center max-w-7xl">
-            {filteredDepartments.map((dept) => (
-              <DepartmentNodeV2
-                key={dept.id}
-                department={dept}
-                isExpanded={expandedDepartments.has(dept.id)}
-                onToggle={() => handleToggleDepartment(dept.id)}
-                expandedTeams={expandedTeams}
-                onToggleTeam={handleToggleTeam}
-                onEmployeeClick={handleEmployeeClick}
-              />
-            ))}
-          </div>
-
-          {filteredDepartments.length === 0 && searchTerm && (
-            <div className="text-center py-12">
-              <p className="text-slate-500">No results found for "{searchTerm}"</p>
+            {/* Departments */}
+            <div className="flex flex-wrap gap-6 justify-center max-w-7xl">
+              {filteredDepartments.map((dept) => (
+                <DepartmentNodeV2
+                  key={dept.id}
+                  department={dept}
+                  isExpanded={expandedDepartments.has(dept.id)}
+                  onToggle={() => handleToggleDepartment(dept.id)}
+                  expandedTeams={expandedTeams}
+                  onToggleTeam={handleToggleTeam}
+                  onEmployeeClick={handleEmployeeClick}
+                />
+              ))}
             </div>
-          )}
+
+            {filteredDepartments.length === 0 && searchTerm && (
+              <div className="text-center py-12">
+                <p className="text-slate-500">No results found for "{searchTerm}"</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

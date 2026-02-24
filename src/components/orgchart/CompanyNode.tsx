@@ -1,7 +1,6 @@
 import React from 'react';
 import { Building2, Users } from 'lucide-react';
 import { Company } from '../../types/orgChart';
-import { Badge } from '../Badge';
 
 interface CompanyNodeProps {
   company: Company;
@@ -9,16 +8,24 @@ interface CompanyNodeProps {
 
 export const CompanyNode: React.FC<CompanyNodeProps> = ({ company }) => {
   return (
-    <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-xl shadow-lg p-6 min-w-[320px]">
+    <div
+      className="text-white rounded-2xl shadow-2xl p-8 w-[280px]"
+      style={{
+        background: 'linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)',
+      }}
+    >
       <div className="flex flex-col items-center text-center">
-        <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
-          <Building2 className="w-8 h-8 text-white" />
+        <div className="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+          <Building2 className="w-12 h-12 text-white" />
         </div>
-        <h2 className="text-2xl font-bold mb-2">{company.name}</h2>
-        <Badge variant="success">{company.status}</Badge>
-        <div className="flex items-center gap-2 mt-4 text-blue-100">
-          <Users className="w-4 h-4" />
-          <span className="text-sm font-medium">{company.totalEmployees} employees</span>
+        <h2 className="text-2xl font-bold mb-3">{company.name}</h2>
+        <div className="flex items-center gap-2 mb-2">
+          <Users className="w-4 h-4 text-white" />
+          <span className="text-sm font-medium text-white">{company.totalEmployees} employees</span>
+        </div>
+        <div className="flex items-center gap-1.5 mt-1">
+          <div className="w-2 h-2 rounded-full bg-green-400" />
+          <span className="text-sm text-white">{company.status}</span>
         </div>
       </div>
     </div>
